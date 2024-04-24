@@ -1,7 +1,7 @@
 name: segmentation_renderer
 description: "A collection of painters to help render segmentation maps"
 version: 0.0.1
-homepage:
+homepage: https://github.com/abdelaziz-mahdy/segmentation_renderer
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
 
 dev_dependencies:
   flutter_test:
