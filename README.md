@@ -15,6 +15,15 @@ The `segmentation_renderer` package provides a set of Flutter widgets and custom
 - **`ContoursPainter`**: A custom painter that draws contours either smoothly or as sharp lines directly on a canvas.
 - **`ShapeAroundContoursPainter`**: A custom painter that draws specified shapes around the contours.
 
+## Images
+
+Here are some examples of what `segmentation_renderer` can do:
+
+![Contour Example](images/contour.png)
+*Example of contours drawn on an image.*
+
+![Bounding Box Example](images/contour_bounding_box.png)
+*Example of bounding shapes drawn around contours.*
 ## Usage
 
 ### Setup

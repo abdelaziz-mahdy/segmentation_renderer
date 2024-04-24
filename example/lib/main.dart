@@ -136,6 +136,7 @@ class _ImageWithContoursWithLoadingState
           return ImageWithContours(
             image: Image.asset(widget.imagePath),
             contours: contours,
+            renderType: RenderType.boundingBox,
           );
         }
       },
