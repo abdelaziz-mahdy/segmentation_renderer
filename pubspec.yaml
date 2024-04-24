@@ -1,6 +1,6 @@
 name: segmentation_renderer
 description: "A collection of painters to help render segmentation maps"
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/abdelaziz-mahdy/segmentation_renderer
 
 environment:

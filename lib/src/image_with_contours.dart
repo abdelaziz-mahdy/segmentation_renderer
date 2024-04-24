@@ -13,11 +13,30 @@ class ImageWithContours extends StatefulWidget {
   final Image image;
   final List<Contour> contours;
   final RenderType renderType;
+  final BoxFit imageFit;
+  final bool smoothPath;
+  final Color contourColor;
+  final double contourStrokeWidth;
+  final bool fillContours;
+  final ShapeType shapeType;
+  final Color shapeColor;
+  final double shapeStrokeWidth;
+  final double allAroundPadding;
+
   const ImageWithContours({
     super.key,
     required this.image,
     required this.contours,
     this.renderType = RenderType.contours,
+    this.imageFit = BoxFit.scaleDown,
+    this.smoothPath = true,
+    this.contourColor = Colors.red,
+    this.contourStrokeWidth = 2,
+    this.fillContours = false,
+    this.shapeType = ShapeType.rectangle,
+    this.shapeColor = Colors.blue,
+    this.shapeStrokeWidth = 2,
+    this.allAroundPadding = 10,
   });
 
   @override
@@ -37,6 +56,8 @@ class _ImageWithContoursState extends State<ImageWithContours>
     widget.image.image.resolve(const ImageConfiguration()).addListener(
       ImageStreamListener((ImageInfo info, bool _) {
         if (!completer.isCompleted) {
+          print(
+              "completer image info ${info.image.height} ${info.image.width}");
           completer.complete(info.image);
         }
       }),
@@ -88,6 +109,7 @@ class _ImageWithContoursState extends State<ImageWithContours>
             children: [
               Image(
                 image: widget.image.image,
+                fit: widget.imageFit,
                 key: imageKey,
               ),
               if (widget.renderType == RenderType.boundingBox ||
@@ -95,27 +117,32 @@ class _ImageWithContoursState extends State<ImageWithContours>
                 if (imageSize != null)
                   CustomPaint(
                     painter: ShapeAroundContoursPainter(
-                        contours: widget.contours,
-                        imageHeight: snapshot.data!.height.toDouble(),
-                        imageWidth: snapshot.data!.width.toDouble(),
-                        renderHeight: imageSize!.height,
-                        renderWidth: imageSize!.width,
-                        color: Colors.blue,
-                        shapeType: ShapeType.circle),
+                      contours: widget.contours,
+                      imageHeight: snapshot.data!.height.toDouble(),
+                      imageWidth: snapshot.data!.width.toDouble(),
+                      renderHeight: imageSize!.height,
+                      renderWidth: imageSize!.width,
+                      shapeType: widget.shapeType,
+                      color: widget.shapeColor,
+                      strokeWidth: widget.shapeStrokeWidth,
+                      allAroundPadding: widget.allAroundPadding,
+                    ),
                   ),
               if (widget.renderType == RenderType.contours ||
                   widget.renderType == RenderType.both)
                 if (imageSize != null)
                   CustomPaint(
                     painter: ContoursPainter(
-                        contours: widget.contours,
-                        imageHeight: snapshot.data!.height.toDouble(),
-                        imageWidth: snapshot.data!.width.toDouble(),
-                        renderHeight: imageSize!.height,
-                        renderWidth: imageSize!.width,
-                        smoothPath: true,
-                        color: Colors.blue,
-                        fillArea: false),
+                      contours: widget.contours,
+                      imageHeight: snapshot.data!.height.toDouble(),
+                      imageWidth: snapshot.data!.width.toDouble(),
+                      renderHeight: imageSize!.height,
+                      renderWidth: imageSize!.width,
+                      smoothPath: widget.smoothPath,
+                      color: widget.contourColor,
+                      strokeWidth: widget.contourStrokeWidth,
+                      fillArea: widget.fillContours,
+                    ),
                   ),
             ],
           );
