@@ -19,11 +19,11 @@ The `segmentation_renderer` package provides a set of Flutter widgets and custom
 
 Here are some examples of what `segmentation_renderer` can do:
 
-![Contour Example](images/contour.png)
-*Example of contours drawn on an image.*
+![Contour Example](https://github.com/abdelaziz-mahdy/segmentation_renderer/blob/main/images/contour.png?raw=true)
+_Example of contours drawn on an image._
+![Bounding Box Example](https://github.com/abdelaziz-mahdy/segmentation_renderer/blob/main/images/contour_bounding_box.png?raw=true)
+_Example of bounding shapes drawn around contours._
 
-![Bounding Box Example](images/contour_bounding_box.png)
-*Example of bounding shapes drawn around contours.*
 ## Usage
 
 ### Setup
