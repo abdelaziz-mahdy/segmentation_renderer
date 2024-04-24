@@ -7,22 +7,57 @@ import 'contours_painter.dart';
 import 'contours_reader.dart';
 import 'shape_around_contours_painter.dart';
 
-enum RenderType { contours, boundingBox, both }
+/// Enum representing different types of rendering for the image with contours.
+enum RenderType {
+  /// Render only the contours.
+  contours,
 
+  /// Render bounding boxes around the contours.
+  boundingBox,
+
+  /// Render both contours and bounding boxes.
+  both
+}
+
+/// Widget for displaying an image with contours.
 class ImageWithContours extends StatefulWidget {
+  /// The image to be displayed.
   final Image image;
+
+  /// The list of contours to be displayed on the image.
   final List<Contour> contours;
+
+  /// The type of rendering for the image with contours.
   final RenderType renderType;
+
+  /// The fit for the image within its container.
   final BoxFit imageFit;
+
+  /// Whether to smooth the paths of the contours.
   final bool smoothPath;
+
+  /// The color of the contour lines.
   final Color contourColor;
+
+  /// The width of the contour lines.
   final double contourStrokeWidth;
+
+  /// Whether to fill the areas enclosed by the contours.
   final bool fillContours;
+
+  /// The type of shape to be drawn around the contours.
   final ShapeType shapeType;
+
+  /// The color of the shape drawn around the contours.
   final Color shapeColor;
+
+  /// The width of the strokes used to draw the shape around the contours.
   final double shapeStrokeWidth;
+
+  /// The padding around the shapes drawn around the contours.
   final double allAroundPadding;
 
+  /// Constructs an ImageWithContours widget.
   const ImageWithContours({
     super.key,
     required this.image,

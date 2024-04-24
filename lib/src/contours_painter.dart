@@ -2,17 +2,36 @@ import 'package:flutter/material.dart';
 
 import 'contours_reader.dart';
 
+/// Custom painter for drawing contours on a canvas.
 class ContoursPainter extends CustomPainter {
+  /// The list of contours to be painted.
   final List<Contour> contours;
+
+  /// The width of the original image, used for scaling.
   final double? imageWidth;
+
+  /// The height of the original image, used for scaling.
   final double? imageHeight;
+
+  /// The width of the real rendered image, used for scaling.
   final double? renderWidth;
+
+  /// The height of the real rendered image, used for scaling.
   final double? renderHeight;
-  final bool fillArea;
-  final bool smoothPath;
+
+  /// The color used to paint the contours.
   final Color color;
+
+  /// The width of the strokes used to draw the contours.
   final double strokeWidth;
 
+  /// Whether to fill the area enclosed by the contours.
+  final bool fillArea;
+
+  /// Whether to smooth the paths when drawing the contours.
+  final bool smoothPath;
+
+  /// Constructs a ContoursPainter instance.
   ContoursPainter({
     required this.contours,
     this.imageWidth,
@@ -25,12 +44,14 @@ class ContoursPainter extends CustomPainter {
     this.smoothPath = true,
   });
 
+  /// Scales the x-coordinate of a point based on image and render dimensions.
   double scaledXPoint(double x) {
     return (imageWidth != null && renderWidth != null)
         ? (x / imageWidth!) * renderWidth!
         : x;
   }
 
+  /// Scales the y-coordinate of a point based on image and render dimensions.
   double scaledYPoint(double y) {
     return (imageHeight != null && renderHeight != null)
         ? (y / imageHeight!) * renderHeight!

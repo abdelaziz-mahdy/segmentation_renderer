@@ -2,19 +2,48 @@ import 'package:flutter/material.dart';
 
 import 'contours_reader.dart';
 
-enum ShapeType { rectangle, circle, ellipse }
+/// Enum representing different types of shapes.
+enum ShapeType {
+  /// Rectangle shape.
+  rectangle,
 
+  /// Circle shape.
+  circle,
+
+  /// Ellipse shape.
+  ellipse
+}
+
+/// Custom painter for drawing shapes around contours on a canvas.
 class ShapeAroundContoursPainter extends CustomPainter {
+  /// The list of contours to be painted.
   final List<Contour> contours;
+
+  /// The width of the original image, used for scaling.
   final double? imageWidth;
+
+  /// The height of the original image, used for scaling.
   final double? imageHeight;
+
+  /// The width of the real rendered image, used for scaling.
   final double? renderWidth;
+
+  /// The height of the real rendered image, used for scaling.
   final double? renderHeight;
+
+  /// The type of shape to be drawn around the contours.
   final ShapeType shapeType;
+
+  /// The color used to paint the shapes.
   final Color color;
+
+  /// The width of the strokes used to draw the shapes.
   final double strokeWidth;
+
+  /// The padding around the shapes.
   final double allAroundPadding;
 
+  /// Constructs a ShapeAroundContoursPainter instance.
   ShapeAroundContoursPainter({
     required this.contours,
     this.imageWidth,
@@ -26,12 +55,15 @@ class ShapeAroundContoursPainter extends CustomPainter {
     this.strokeWidth = 2,
     this.allAroundPadding = 10,
   });
+
+  /// Scales the x-coordinate of a point based on image and render dimensions.
   double scaledXPoint(double x) {
     return (imageWidth != null && renderWidth != null)
         ? (x / imageWidth!) * renderWidth!
         : x;
   }
 
+  /// Scales the y-coordinate of a point based on image and render dimensions.
   double scaledYPoint(double y) {
     return (imageHeight != null && renderHeight != null)
         ? (y / imageHeight!) * renderHeight!
@@ -63,6 +95,7 @@ class ShapeAroundContoursPainter extends CustomPainter {
     }
   }
 
+  /// Calculates the bounding box around the contour points with padding.
   Rect _calculateBoundingBox(List<Point> points) {
     double minX = double.infinity, maxX = double.negativeInfinity;
     double minY = double.infinity, maxY = double.negativeInfinity;
