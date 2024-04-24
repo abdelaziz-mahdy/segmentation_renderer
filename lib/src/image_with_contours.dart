@@ -56,8 +56,6 @@ class _ImageWithContoursState extends State<ImageWithContours>
     widget.image.image.resolve(const ImageConfiguration()).addListener(
       ImageStreamListener((ImageInfo info, bool _) {
         if (!completer.isCompleted) {
-          print(
-              "completer image info ${info.image.height} ${info.image.width}");
           completer.complete(info.image);
         }
       }),
@@ -92,7 +90,6 @@ class _ImageWithContoursState extends State<ImageWithContours>
     }
     // run after build
     else {
-      print("imageKey.currentContext is null retrying");
       WidgetsBinding.instance.addPostFrameCallback((_) => measureSize());
     }
   }
